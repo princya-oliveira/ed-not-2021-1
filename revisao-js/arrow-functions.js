@@ -33,7 +33,7 @@ console.log(potencia2(2,8))
 
 // Função sem parêmetro
 function megasena() {
-    // Esta função retorna um n´mero aleatório entre 1 e 60
+    // Esta função retorna um número aleatório entre 1 e 60
     // Math.random() -> retorna um número alearório entre 0 (inclusive) e 1 (exclusive)
     // * 60 -> ajusta a faixa de valores para entre 0 e 59
     // + 1 -> ajusta a faixa de valores para entre 1 e 60
