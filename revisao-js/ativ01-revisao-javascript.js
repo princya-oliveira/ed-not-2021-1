@@ -110,8 +110,7 @@ console.log(estadosNe)
       segunda pela primeira. 
 */
 
-let dens_demo = (a, p) => p / a
-console.log(dens_demo(estado9.area, estado9.populacao))
+let dens_demo = (area, populacao) => populacao / area
 
 /*
    3) Percorra o vetor estadosNe usando um for tradicional. Para cada estado,
@@ -124,17 +123,28 @@ console.log(dens_demo(estado9.area, estado9.populacao))
 */
 
 for(let i = 0; i < estadosNe.length; i++) {
-    
-    console.log(i, estadosNe[i])
+    estadosNe[i].densidade_demografica = dens_demo(estadosNe[i].area, estadosNe[i].populacao)
+    delete estadosNe[i].sigla
 }
+ console.log(estadosNe)
 
 /* 4) Escreva uma arrow function que receba um objeto. Na função, use for..in
       para extrair as propriedades e seus valores e exibi-los com console.log().
-
 */
 
+let obj = (objeto) => {
+    for(let propriedade in objeto) 
+    console.log(propriedade + '->' + objeto[propriedade])
+}
+
+console.log('-----------------------------')
+
 /* 5) Percorra o vetor estadosNe usando for..of. Para cada objeto no vetor,
-      invoque a função escrita em 4) para exibi-lo.
+      invoque a função escrita em 4) para exibi-lo.*/
+
+for(let o of estadosNe) {
+    console.log(o)
+}
 
 /*
    6)
@@ -146,5 +156,24 @@ for(let i = 0; i < estadosNe.length; i++) {
          deve ser inserido com unshift(), para manter a ordem alfabética. 
          O terceiro Estado (Rio Grande do Norte) deve ser inserido entre os dois 
          já existentes, e assim por diante.
-
 */
+
+console.log('-------------------------------------')
+
+let info_estados = []
+
+info_estados.push(estado1.nome)
+info_estados.unshift(estado2.nome)
+info_estados.splice(1,0,estado3.nome)
+info_estados.splice(1,0,estado4.nome)
+info_estados.splice(2,0,estado5.nome)
+info_estados.splice(1,0,estado6.nome)
+info_estados.splice(4,0,estado7.nome)
+info_estados.splice(2,0,estado8.nome)
+info_estados.splice(1,0,estado9.nome)
+
+console.table(info_estados)
+
+
+
+
