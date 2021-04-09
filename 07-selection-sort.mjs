@@ -1,7 +1,7 @@
 /*
 SELECTION SORT
 
-Trata-se de uma otimização do bibble sort, diminuindo drasticamente
+Trata-se de uma otimização do bubble sort, diminuindo drasticamente
 o número de trocas necessárias para fazer a ordenação.
 
 Isola um dos valores do vetor e procura pelo menor valor entre os
