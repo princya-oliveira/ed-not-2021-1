@@ -54,7 +54,7 @@ function mergeSort(vetor, fnComp) {
     return vetor    // Vetor de 1 elemento, não modificado, condição de saída
 }
 
-import { gastos } from './massa-testes/cota-parlamentar-8.5-mil.mjs'
+import { gastos } from './massa-testes/cota-parlamentar-282-mil.mjs'
 
 comps = 0, divisoes = 0, juncoes = 0
 console.time('Ordenando gastos...')
