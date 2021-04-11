@@ -29,7 +29,7 @@ function quickSort(vetor, fnComp, ini = 0, fim = vetor.length - 1) {
     }
 }
 
-import { gastos } from './massa-testes/cota-parlamentar-282-mil.mjs'
+import { gastos } from './massa-testes/cota-parlamentar-8.5-mil.mjs'
 
 comps = 0, trocas = 0, pass = 0
 console.time('Ordenando gastos...')
