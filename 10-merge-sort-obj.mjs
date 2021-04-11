@@ -6,7 +6,7 @@ function mergeSort(vetor, fnComp) {
         let pEsq = 0, pDir = 0, vetRes = []
         while(pEsq < vetEsq.length && pDir < vetDir.length) {
             //if(vetEsq[pEsq] < vetDir[pDir]) {
-                if(vetDir[pDir] < vetEsq[pEsq]) { // parãmetros invertidos
+            if(fnComp(vetDir[pDir], vetEsq[pEsq])) {    // Parâmetros invertidos
                 vetRes.push(vetEsq[pEsq])
                 pEsq++
             }
@@ -51,7 +51,7 @@ function mergeSort(vetor, fnComp) {
         
         return vetFinal
     }
-    return vetor    // Vetor de 1 elemento, não modificado
+    return vetor    // Vetor de 1 elemento, não modificado, condição de saída
 }
 
 import { candidatos } from './includes/candidatos-2018.mjs'
@@ -62,15 +62,17 @@ console.time('Ordenando candidatos...')
 // Ordenando pelo nome de urna (NM_URNA_CANDIDATO)
 //let candidatosOrd = mergeSort(candidatos, (obj1, obj2) => obj1.NM_URNA_CANDIDATO > obj2.NM_URNA_CANDIDATO)
 
-// Ordenação por dois níveis: 1º por UF (SG_UF) e, dentro da UF, pelo nº do candidato (NR_CANDIDATO)
+// Ordenação por dois níveis: primeiro por UE (SG_UF) e, dentro da UE, pelo nº do candidato (NR_CANDIDATO)
 let candidatosOrd = mergeSort(candidatos, (obj1, obj2) => {
-    if(obj1.SG_UE === obj2.SG_UE) {  //Empate de UE
-        //Desempate pelo NR_CANDIDATO
+    if(obj1.SG_UE === obj2.SG_UE) {     // Empate de UE
+        // Desempate pelo NR_CANDIDATO
         return obj1.NR_CANDIDATO > obj2.NR_CANDIDATO
     }
-    else return obj1.SG_UE > obj2.SG_UE  // A diferenciação se dá por UF
+    else return obj1.SG_UE > obj2.SG_UE     // A diferenciação se dá por UE
 })
 
+let memoria = process.memoryUsage().heapUsed / 1024 / 1024
 console.timeEnd('Ordenando candidatos...')
 console.log('DEPOIS:', candidatosOrd)
-console.log({comps, divisoes, juncoes})
+//candidatosOrd.map(obj => console.log(obj))
+console.log({comps, divisoes, juncoes, memoria})

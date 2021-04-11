@@ -1,11 +1,9 @@
 /*
     MERGE SORT
-
     No processo de ordenação, esse algoritmo "desmonta" o vetor original
     contendo N elementos até obter N vetores de apenas um elemento cada um.
     Em seguida, usando a técnica de mesclagem (merge), "remonta" o vetor,
     dessa vez com os elementos já em ordem.
-
 */
 
 let comps, divisoes, juncoes
@@ -60,14 +58,17 @@ function mergeSort(vetor) {
         
         return vetFinal
     }
-    return vetor    // Vetor de 1 elemento, não modificado
+    return vetor    // Vetor de 1 elemento, não modificado, condição de saída
 }
 
 comps = 0, divisoes = 0, juncoes = 0
-let nums = [7, 4, 9, 0, 6, 1, 8, 2, 5, 3]
+//let nums = [7, 4, 9, 0, 6, 1, 8, 2, 5, 3]
+//let nums = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+let nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 let numsOrd = mergeSort(nums)
 console.log({numsOrd})
 console.log({comps, divisoes, juncoes})
+
 
 import { nomes } from './includes/100-mil-nomes.mjs'
 
@@ -76,5 +77,5 @@ console.time('Ordenando nomes...')
 const nomesOrd = mergeSort(nomes)
 console.timeEnd('Ordenando nomes...')
 let memoria = process.memoryUsage().heapUsed / 1024 / 1024
-console.log('Depois:', nomesOrd)
+console.log('DEPOIS:', nomesOrd)
 console.log({comps, divisoes, juncoes, memoria})
