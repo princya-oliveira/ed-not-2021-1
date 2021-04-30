@@ -1,8 +1,8 @@
-import { Stack } from './lib/Stack.mjs'
+import { stack } from './lib/stack.mjs'
 
 const texto = 'Socorram-me, subi no ônibus em Marrocos'
 
-const pilha = new Stack()
+const pilha = new stack()
 
 // Empilhamento
 for(let i = 0; i < texto.length; i++) {
