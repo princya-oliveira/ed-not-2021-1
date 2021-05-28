@@ -1,4 +1,4 @@
-import { Stack } from './lib/stack.mjs'
+import { Stack } from './lib/Stack.mjs'
 
 let analisador = new Stack()
 

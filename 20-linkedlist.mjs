@@ -1,4 +1,4 @@
-import { linkedlist } from '.lib/linkedlist.mjs'
+import { LinkedList } from './lib/LinkedList.mjs'
 
 let lista = new LinkedList()
 console.log(lista.print())
@@ -62,5 +62,5 @@ let peek4 = lista.peek(4)
 console.log({peek0, peek2, peek3, peek4})
 
 let peekHead = lista.peekHead()
-let peekTail = lista.pekkTail()
+let peekTail = lista.peekTail()
 console.log({peekHead, peekTail})

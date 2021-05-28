@@ -1,4 +1,4 @@
-import { Queue } from './lib/queue2.mjs'
+import { Queue } from './lib/Queue2.mjs'
 
 let fila = new Queue()
 console.log(fila.print())
