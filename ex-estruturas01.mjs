@@ -7,30 +7,19 @@
 
 export class Stack {
 
-    #data // pilha resto
-    #resto
+    #data
 
     constructor() {
         this.#data = []      // Inicializa o vetor vazio
-        this.#resto          // variável resto
-        this.stringBin = '' // string p/ incluir número binário
     }
 
     // Inserção
     push(val) {
-        while(val > 1) {
-            this.#resto = Math.floor(val % 2)
-            this.#data.push(this.#resto)
-            val = Math.floor(val / 2)
-        }
         this.#data.push(val)
     }
 
     // Retirada
     pop() {
-        while(this.#data.length > 0) {
-            this.stringBin += this.#data.pop().toString()
-        }
         return this.#data.pop()
     }
 
@@ -46,17 +35,24 @@ export class Stack {
     }
 
     print() {
-        return JSON.stringify(this.stringBin)
+        return JSON.stringify(this.#data)
     }
 
 }
 
-let pilha = new Stack()
-pilha.push(25)
-let binario = pilha.pop()
-console.log("O número binário correspondente é:", pilha.print(binario))
+let val = 25 // número a ser convertido em binário 
+const pilha = new Stack()
+let resto
 
-let pilha2 = new Stack()
-pilha.push(255)
-let binario2 = pilha.pop()
-console.log("O número binário correspondente é:", pilha.print(binario))
+while(val > 0) {
+    resto = Math.floor(val % 2)
+    pilha.push(resto)
+    val = Math.floor(val / 2)
+}
+
+let stringBin = ''
+
+while(! pilha.empty) {
+    stringBin += pilha.pop().toString()
+}
+console.log(`O número correspondente convertido em binário é: ${stringBin}`)
