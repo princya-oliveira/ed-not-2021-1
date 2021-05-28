@@ -48,20 +48,31 @@ export class Deque {
     }
 }
 
-const palin = 'A base do teto desaba' // texto/palíndromo a ser verificado
+function verificarPalin(palin) {
 
-const fila = new Deque()
+    if(palin === undefined || palin === null || (palin !== null && palin.length === 0)){
+        return false
+    }
 
-// Enfileirando o texto
-for(let i = 0; i < palin.length; i++) {
-    fila.insertBack(palin.charAt(i))
-}
-console.log(fila.print())
+    const deque = new Deque()
+    const letrasMin = palin.toLocaleLowerCase().split(' ').join('') // transforma todas as letras em minúsculas e retira espaços
+    let iguais = true
+    let letra_inicio
+    let letra_fim
+    
 
-let palinRev = ''
-
-// Desenfileirando/Verificando o texto
-while(! fila.empty) {
-    palinRev += fila.removeBack()
-}
-console.log(palinRev)
+    for(let i = 0; i < letrasMin.length; i++) {
+        deque.insertBack(letrasMin.charAt(i))
+    }
+    
+    // Verificando se o texto é um palíndromo
+    while(! deque.empty && iguais) {
+        letra_inicio = deque.removeFront()
+        letra_fim = deque.removeBack()
+        if(letra_inicio !== letra_fim) {
+            iguais = false
+        }
+    } 
+    return iguais
+} 
+console.log(verificarPalin('level'))
