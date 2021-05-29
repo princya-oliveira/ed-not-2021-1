@@ -48,31 +48,33 @@ export class Deque {
     }
 }
 
-function verificarPalin(palin) {
+let deque = new Deque()
+// texto a ser analisado
+let texto = "A base do teto desaba"
+// transformar todas as letras do texto em minúsculas e retirar espaços
+const textoMin = texto.toLocaleLowerCase().split(' ').join('')
 
-    if(palin === undefined || palin === null || (palin !== null && palin.length === 0)){
-        return false
+// inserindo as letras no deque
+for(let i = 0; i < textoMin.length; i++) {
+    deque.insertFront(textoMin.charAt(i))
+}
+
+let letraInicio
+let letraFim
+let count = 0
+// analisando se o texto é um palíndromo ou não
+while(deque.count > 1) {
+    letraInicio = deque.removeFront()
+    letraFim = deque.removeBack()
+
+    if(letraInicio !== letraFim){ // comparando letra do início
+       count += 1 // variável para contar diferença de letras inicio-fim
     }
-
-    const deque = new Deque()
-    const letrasMin = palin.toLocaleLowerCase().split(' ').join('') // transforma todas as letras em minúsculas e retira espaços
-    let iguais = true
-    let letra_inicio
-    let letra_fim
-    
-
-    for(let i = 0; i < letrasMin.length; i++) {
-        deque.insertBack(letrasMin.charAt(i))
-    }
-    
-    // Verificando se o texto é um palíndromo
-    while(! deque.empty && iguais) {
-        letra_inicio = deque.removeFront()
-        letra_fim = deque.removeBack()
-        if(letra_inicio !== letra_fim) {
-            iguais = false
-        }
-    } 
-    return iguais
 } 
-console.log(verificarPalin('level'))
+
+if(count >= 1) {
+    console.log(`O texto "${texto}" NÃO É um palíndromo.`)
+}
+else {
+    console.log(`O texto "${texto}" É um palíndromo.`)
+}
