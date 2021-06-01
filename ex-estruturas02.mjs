@@ -1,80 +1,28 @@
 /*
     Implemente um programa verificador de palíndromos utilizando um deque.
 
-    Data de entrega: 31/05, até 20h50, valendo nota de participação
+    Data de entrega: 31/02, até 20h50, valendo nota de participação
 */
-export class Deque {
 
-    #data
+import { Deque } from './lib/Deque2.mjs'    // Tanto faz Deque ou Deque2
 
-    constructor() {
-        this.#data = []
-    }
+const verificador = new Deque()
 
-    insertFront(val) {
-        this.#data.unshift(val)
-    }
+const palindromo = 'A TODA ACRÓPOLE DOMADA: ROMANA NA MORADA MODELO PORCA ADOTA!'
 
-    insertBack(val) {
-        this.#data.push(val)
-    }
-
-    get empty() {
-        return this.#data.length === 0
-    }
-
-    get count() {
-        return this.#data.length
-    }
-
-    removeFront() {
-        return this.#data.shift()
-    }
-
-    removeBack() {
-        return this.#data.pop()
-    }
-
-    peekFront() {
-        return this.#data[0]
-    }
-
-    peekBack() {
-        return this.#data[this.#data.length - 1]
-    }
-
-    print() {
-        return JSON.stringify(this.#data)
-    }
+for(let i = 0; i < palindromo.length; i++) {
+    // Insere as letras do palíndromo no final do deque
+    verificador.insertBack(palindromo.charAt(i))
 }
 
-let deque = new Deque()
-// texto a ser analisado
-let texto = "A base do teto desaba"
-// transformar todas as letras do texto em minúsculas e retirar espaços
-const textoMin = texto.toLocaleLowerCase().split(' ').join('')
+console.log(verificador.print())
 
-// inserindo as letras no deque
-for(let i = 0; i < textoMin.length; i++) {
-    deque.insertFront(textoMin.charAt(i))
+let inverso = ''
+
+while(! verificador.empty) {
+    // Para inverter, a remoção deve ser feita no final do deque
+    inverso += verificador.removeBack()
 }
 
-let letraInicio
-let letraFim
-let count = 0
-// analisando se o texto é um palíndromo ou não
-while(deque.count > 1) {
-    letraInicio = deque.removeFront()
-    letraFim = deque.removeBack()
-
-    if(letraInicio !== letraFim){ // comparando letra do início
-       count += 1 // variável para contar diferença de letras inicio-fim
-    }
-} 
-
-if(count >= 1) {
-    console.log(`O texto "${texto}" NÃO É um palíndromo.`)
-}
-else {
-    console.log(`O texto "${texto}" É um palíndromo.`)
-}
+console.log(palindromo)
+console.log(inverso)

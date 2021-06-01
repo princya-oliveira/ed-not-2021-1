@@ -2,57 +2,30 @@
     Utilize a estrutura de dados adequada e implemente um programa que converta
     um número decimal em um número binário.
 
-    Data de entrega: 31/05, até 20h50, valendo nota de participação
+    Data de entrega: 31/02, até 20h50, valendo nota de participação
 */
 
-export class Stack {
+// Usaremos a estutura pilha
+import { Stack } from './lib/Stack.mjs'
 
-    #data
+const numDecimal = 2021
 
-    constructor() {
-        this.#data = []      // Inicializa o vetor vazio
-    }
+let num = numDecimal
 
-    // Inserção
-    push(val) {
-        this.#data.push(val)
-    }
+const restos = new Stack()
 
-    // Retirada
-    pop() {
-        return this.#data.pop()
-    }
-
-    // "Espiadinha": retorna o valor que está no topo da pilha (último valor), mas
-    // sem retirá-lo de lá
-    peek() {
-        return this.#data[this.#data.length - 1]
-    }
-
-    // A pilha está vazia (true/false) - PROPRIEDADE CALCULADA (só getter)
-    get empty() {
-        return this.#data.length === 0
-    }
-
-    print() {
-        return JSON.stringify(this.#data)
-    }
-
+while(num > 0) {
+    restos.push(num % 2)        // Empilha o resto da divisão do número por 2
+    // Corta o número pela metade, desprezando as casas decimais
+    num = Math.floor(num / 2)
 }
 
-let val = 25 // número a ser convertido em binário 
-const pilha = new Stack()
-let resto
+console.log(restos.print())
 
-while(val > 0) {
-    resto = Math.floor(val % 2)
-    pilha.push(resto)
-    val = Math.floor(val / 2)
+let binario = ''
+
+while(! restos.empty) {
+    binario += restos.pop()
 }
 
-let stringBin = ''
-
-while(! pilha.empty) {
-    stringBin += pilha.pop().toString()
-}
-console.log(`O número correspondente convertido em binário é: ${stringBin}`)
+console.log(`${numDecimal} em base 10 equivale a ${binario} em base 2.`)
